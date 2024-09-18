@@ -1,0 +1,20 @@
+---
+- name: create an ec2 instance
+  hosts: my-host
+  vars_files:
+           - my_creds.yml
+ 
+  tasks:
+        - name: create an ec2 instance using ansible
+          ec2_instance:
+                 aws_access_key: "{{ aws_access_key }}"
+                 aws_secret_key: "{{ aws_secret_key }}"
+                 key_name: mumbai
+                 instance_type: t2.micro
+                 image_id: ami-08718895af4dfa033
+                 wait: yes
+                 security_group: sg-0e14835f6464b591a
+                 region: ap-south-1
+                 count: 1
+                 tags:
+                      name: webserver
